@@ -1,5 +1,6 @@
 <?php
 	include("../configs/configuration.php");
+	include("../configs/menu.php");
 	if(isset($_GET['cid']) && !empty($_GET['cid'])){
 		$cid=$_GET['cid'];
 		$edit_query="select * from shop where id='".$cid."'";
@@ -7,7 +8,7 @@
 		$row=mysqli_fetch_array($result);
 	}
 ?>
-
+<h1>Shops</h1>
 <form action="form_back.php" method="POST">
 	<div class="row">
 		<div class="cols">Code</div>

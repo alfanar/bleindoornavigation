@@ -1,13 +1,14 @@
 <?php
 	include("../configs/configuration.php");
+	include("../configs/menu.php");
 	if(isset($_GET['cid']) && !empty($_GET['cid'])){
 		$cid=$_GET['cid'];
-		$edit_query="select * from shop_coordinates_table where id='".$cid."'";
+		$edit_query="select * from shop_coordinates where id='".$cid."'";
 		$result=mysqli_query($link,$edit_query);
 		$row=mysqli_fetch_array($result);
 	}
 ?>
-
+<h1>Shops Coordinates</h1>
 <form action="form_back.php" method="POST">
 	<div class="row">
 		<div class="cols">Point</div>

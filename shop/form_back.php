@@ -5,7 +5,7 @@
 	$cname=$_POST['cname'];
 	$cdescription=$_POST['cdescription'];
 	$cfloor=$_POST['cfloor'];
-	
+
 
 	if(isset($_POST['ccode']) && isset($_POST['cname']) && isset($_POST['cdescription'])&& isset($_POST['cfloor'])){
 		if(empty($_POST['cid'])){

@@ -1,3 +1,4 @@
 <?php
-$link=mysqli_connect("localhost","root","1234","floor_table");
+$site_url = "http://localhost/bleindoornavigation";
+$link = mysqli_connect("localhost","root","root","bleindoornavigation");
 ?>

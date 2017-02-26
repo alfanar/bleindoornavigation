@@ -1,6 +1,6 @@
-
 <?php
 	include("../configs/configuration.php");
+	include("../configs/menu.php");
 	if(isset($_GET['cid']) && !empty($_GET['cid'])){
 		$cid=$_GET['cid'];
 		$edit_query="select * from location where id='".$cid."'";
@@ -8,8 +8,9 @@
 		$row=mysqli_fetch_array($result);
 	}
 ?>
+<h1>Locations</h1>
 <form action="form_back.php" method="POST">
-	
+
 
 
 <div class="row">

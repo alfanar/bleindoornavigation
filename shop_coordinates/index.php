@@ -1,10 +1,12 @@
 <?php
 	include("../configs/configuration.php");
-	$query="select * from shop_coordinates_table";
+	include("../configs/menu.php");
+	$query="select * from shop_coordinates";
 	if(isset($_GET['msg'])){
 		echo $_GET['msg'];
 	}
 ?>
+<h1>Shops Coordinates</h1>
 <table border="1">
 <tr>
 <td>id</td>

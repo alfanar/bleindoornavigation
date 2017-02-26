@@ -1,10 +1,12 @@
 <?php
 	include("../configs/configuration.php");
+	include("../configs/menu.php");
 	$query="select * from location";
 	if(isset($_GET['msg'])){
 		echo $_GET['msg'];
 	}
 ?>
+<h1>Locations</h1>
 <table border="1">
 <tr>
 <td>No.</td>

@@ -1,10 +1,12 @@
 <?php
 	include("../configs/configuration.php");
+	include("../configs/menu.php");
 	$query="select * from shop";
 	if(isset($_GET['msg'])){
 		echo $_GET['msg'];
 	}
 ?>
+<h1>Shops</h1>
 <table border="1">
 <tr>
 <td>Id</td>

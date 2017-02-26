@@ -1,5 +1,7 @@
 <?php
 	include("../configs/configuration.php");
+	include("../configs/menu.php");
+
 	if(isset($_GET['cid']) && !empty($_GET['cid'])){
 		$cid=$_GET['cid'];
 		$edit_query="select * from floor where id='".$cid."'";
@@ -7,6 +9,7 @@
 		$row=mysqli_fetch_array($result);
 	}
 ?>
+<h1>Floors</h1>
 <form action="form_back.php" method="POST">
 <div class="row">
 		<div class="cols">id</div>
@@ -42,14 +45,14 @@
 		<div class="cols">
 			<input type="text" name="cmatrix" id="cmatrix" value="<?php if(isset($row['matrix'])){echo $row['matrix'];}?>">
 			</div>
-	</div>	
+	</div>
 
   <div class="row">
 		<div class="cols">location_id</div>
 		<div class="cols">
 			<input type="text" name="clocation_id" id="clocation_id" value="<?php if(isset($row['location_id'])){echo $row['location_id'];}?>">
 			</div>
-	</div>	
+	</div>
 
 	<div class="row">
 		<div class="cols">
