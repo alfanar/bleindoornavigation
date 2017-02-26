@@ -1,6 +1,6 @@
 
 <?php
-	include("configuration.php");
+	include("../configs/configuration.php");
 	$cpoint=$_POST['cpoint'];
 	$cshop_id=$_POST['cshop_id'];
 	

@@ -1,5 +1,5 @@
 <?php
-	include("configuration.php");
+	include("../configs/configuration.php");
 	$query="select * from shop";
 	if(isset($_GET['msg'])){
 		echo $_GET['msg'];

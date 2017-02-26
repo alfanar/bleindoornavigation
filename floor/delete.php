@@ -1,5 +1,5 @@
 <?php
-	include("configuration.php");
+	include("../configs/configuration.php");
 	if(isset($_GET['cid']) && !empty($_GET['cid'])){
 		$query="DELETE FROM floor where id='".$_GET['cid']."'";
 		$result= mysqli_query($link,$query);

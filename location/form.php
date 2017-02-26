@@ -1,6 +1,6 @@
 
 <?php
-	include("configuration.php");
+	include("../configs/configuration.php");
 	if(isset($_GET['cid']) && !empty($_GET['cid'])){
 		$cid=$_GET['cid'];
 		$edit_query="select * from location where id='".$cid."'";

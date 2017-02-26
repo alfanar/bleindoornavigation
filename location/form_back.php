@@ -1,6 +1,6 @@
 
 <?php
-include("configuration.php");
+include("../configs/configuration.php");
 
 	$t_name=$_POST['t_name'];
 	$t_address=$_POST['t_address'];

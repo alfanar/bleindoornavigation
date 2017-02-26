@@ -1,6 +1,6 @@
 
 <?php
-	include("configuration.php");
+	include("../configs/configuration.php");
 	$ccode=$_POST['ccode'];
 	$cname=$_POST['cname'];
 	$cdescription=$_POST['cdescription'];
