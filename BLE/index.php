@@ -1,5 +1,5 @@
 <?php
-include("../configs/configuration.php");
+include("configs/configuration.php");
 ?>
 
 
@@ -13,7 +13,7 @@ include("../configs/configuration.php");
 <body>
 <center>
 <div id="body">
-	
+
 <div id="content">
     <table align="center">
     <tr>
