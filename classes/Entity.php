@@ -13,11 +13,11 @@ abstract class Entity
 	public function select($fields, $condition = '1=1')
 	{
 		$data = array();
-		$sql = 'SELECT '. $fields .' FROM '. $this->_table .' WHERE '. $condition;
+		$sql = 'SELECT'. $fields .' FROM '. $this->_table .' WHERE '. $condition;
 
 		$this->_db->db_query($sql) or die ($this->_db->db_error());
 
-		while($row = $this->_db->db_fetch())
+		while($row  = $this->_db->db_fetch())
 		{
 			$data[] = $row;
 		}
@@ -25,18 +25,28 @@ abstract class Entity
 		return $data;
 	}
 
-	public function insert()
+	public function insert($fields)
+   {
+   
+       $sql = 'INSERT'. $fields .' INTO ' . $this->_table;
+
+       $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
+      return $result;
+   }                                                                                                
+	
+    public function update($fields)
 	{
+
+       $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
+      return $result;
 
 	}
 
-	public function update()
+	public function delete($id)
 	{
-
-	}
-
-	public function delete()
-	{
+      $sql='DELETE'. $id .' FROM '. $this->_table ;
+      $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
+      return $result;
 
 	}
 }

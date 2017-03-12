@@ -3,7 +3,7 @@ include("../configs/configuration.php");
 
 // delete condition
 if(isset($_GET['delete_id']))
-{
+{    
 	$sql_query="DELETE FROM location WHERE id=".$_GET['delete_id'];
 	mysqli_query($link,$sql_query);
 	header("Location: $_SERVER[PHP_SELF]");
@@ -16,7 +16,7 @@ if(isset($_GET['delete_id']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE indoornavigation</title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 <script type="text/javascript">
 function edt_id(id)
 {
@@ -80,8 +80,8 @@ function delete_id(id)
 
 
 
-            <td align="center"><a href="javascript:edt_id('<?php echo $row['id']; ?>')"><img src="b_edit.png" align="EDIT" /></a></td>
-            <td align="center"><a href="javascript:delete_id('<?php echo $row['id']; ?>')"><img src="b_drop.png" align="DELETE" /></a></td>
+            <td align="center"><a href="javascript:edt_id('<?php echo $row['id']; ?>')"><img src="../assets/imgs/b_edit.png" align="EDIT" /></a></td>
+            <td align="center"><a href="javascript:delete_id('<?php echo $row['id']; ?>')"><img src="../assets/imgs/b_drop.png" align="DELETE" /></a></td>
             </tr>
         <?php
 		}

@@ -51,7 +51,7 @@ if(isset($_POST['btn-cancel']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE Indoornavigation </title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 </head>
 <body>
 <center>

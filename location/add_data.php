@@ -5,20 +5,23 @@ if(isset($_POST['name'])&&isset($_POST['address'])&&isset($_POST['description'])
 if(isset($_POST['btn-save']))
 {
     // variables for input data
-    $name = $_POST['name'];
-    $address= $_POST['address'];
-    $description= $_POST['description'];
-    $coordinates= $_POST['coordinates'];
-    $image_path= $_POST['image_path'];
+    $name        = $_POST['name'];
+    $address     = $_POST['address'];
+    $description = $_POST['description'];
+    $coordinates = $_POST['coordinates'];
+    $image_path  = $_POST['image_path'];
     
     // variables for input data
     
+    $fields    = array ('$name','$address','$description','$coordinates','$image_path');
+    $location  = new Location($db);
+    $result    = $location->insert($name,$address, $description,$coordinates,$image_path);
+    
     // sql query for inserting data into database
-    $sql_query = "INSERT INTO location (name,address,description,coordinates,image_path) VALUES('$name','$address','$description','$coordinates','$image_path')";
+   
     // sql query for inserting data into database
     }
-    // sql query execution function
-    $result=mysqli_query($link,$sql_query) or die(mysqli_error($link));
+    
     if($result)
     {
         ?>
@@ -44,7 +47,7 @@ if(isset($_POST['btn-save']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE indoornavigation </title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 </head>
 <body>
 <center>
