@@ -7,8 +7,8 @@ function __autoload($classname) {
 
 $host 	  = 'localhost';
 $username = 'root';
-$password = '1234';
-$database = 'bleindoornavigation';
+$password = '12345678';
+$database = 'BLE';
 
 $db = new Db($host, $username, $password, $database);
 ?>

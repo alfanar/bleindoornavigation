@@ -4,9 +4,12 @@ include("../configs/configuration.php");
 // delete condition
 if(isset($_GET['delete_id']))
 {    
-	$sql_query="DELETE FROM location WHERE id=".$_GET['delete_id'];
-	mysqli_query($link,$sql_query);
-	header("Location: $_SERVER[PHP_SELF]");
+	
+      $location = new Location($db);
+      $result   = $location->delete($_GET['delete_id']);
+    //$sql_query="DELETE FROM location WHERE id=".$_GET['delete_id'];
+	//mysqli_query($link,$sql_query);
+	//header("Location: $_SERVER[PHP_SELF]");
 }
 // delete condition
 
@@ -52,7 +55,7 @@ function delete_id(id)
     <th>name</th>
     <th>address</th>
     <th>description</th>
-    <th>coordinats</th>
+    <th>coordinates</th>
      <th>image_path</th>
 
 

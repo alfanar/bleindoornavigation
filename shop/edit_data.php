@@ -1,28 +1,23 @@
 <?php
 include("../configs/configuration.php");
-if(isset($_GET['edit_id']))
-{
-    $sql_query="SELECT * FROM shop WHERE id=".$_GET['edit_id'];
-    $result_set=mysqli_query($link,$sql_query);
-    $fetched_row=mysqli_fetch_array($link,$result_set);
-}
+
 if(isset($_POST['btn-update']))
 {
     // variables for input data
-    $code = $_POST['code'];
-    $name= $_POST['name'];
-    $description= $_POST['description'];
-    
-    $floor_id= $_POST['floor_id'];
+    $code        = $_POST['code'];
+    $name        = $_POST['name'];
+    $description = $_POST['description'];
+    $floor_id    = $_POST['floor_id'];
     
     // variables for input data
-    
-    // sql query for update data into database
-    $sql_query = "UPDATE shop SET code='$code',name='$name',description='$description',floor_id='$floor_id' WHERE id=".$_GET['edit_id'];
+    $data      = "code='$code', name='$name', description='$description', floor_id='$floor_id'";
+    $shop      = new Shop($db);
+    $result    = $shop->update($data, $_GET['edit_id']);
+
     // sql query for update data into database
     
     // sql query execution function
-    if(mysqli_query($link,$sql_query))
+    if($result)
     {
         ?>
         <script type="text/javascript">
@@ -51,7 +46,7 @@ if(isset($_POST['btn-cancel']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE Indoornavigation </title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 </head>
 <body>
 <center>
@@ -67,18 +62,19 @@ if(isset($_POST['btn-cancel']))
     <form method="post">
     <table align="center">
     <tr>
-    <td><input type="text" name="code" placeholder="CODe" value="<?php echo $fetched_row['code']; ?>" required /></td>
+    <td><input type="text" name="code" placeholder="CODe"  required /></td>
     </tr>
     <tr>
-    <td><input type="text" name="name" placeholder="NAME" value="<?php echo $fetched_row['name']; ?>" required /></td>
+    <td><input type="text" name="name" placeholder="NAME"  required /></td>
     </tr>
     
     <tr>
-    <td><input type="text" name="description" placeholder="DESCRIPTION" value="<?php echo $fetched_row['description']; ?>" required /></td>
+    <td><input type="text" name="description" placeholder="DESCRIPTION" required /></td>
     </tr>
    
     <tr>
-    <td><input type="text" name="floor_id" placeholder="FLOOR ID" value="<?php echo $fetched_row['floor_id']; ?>" required /></td>
+    <td><input type="text" name="floor_id" placeholder="FLOOR ID"  required />
+    </td>
     </tr>
    
     <tr>

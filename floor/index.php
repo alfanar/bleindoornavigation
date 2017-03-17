@@ -3,11 +3,11 @@ include("../configs/configuration.php");
 
 // delete condition
 if(isset($_GET['delete_id']))
-{
-	$sql_query="DELETE FROM floor WHERE id=".$_GET['delete_id'];
-	mysqli_query($link,$sql_query);
-	header("Location: $_SERVER[PHP_SELF]");
-}
+{     
+ $id        = $_GET['delete_id'];
+ $floor = new Floor($db);
+ $result    = $floor->delete($id);
+ }
 // delete condition
 
 ?>
@@ -16,7 +16,7 @@ if(isset($_GET['delete_id']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE indoornavigation</title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 <script type="text/javascript">
 function edt_id(id)
 {
@@ -49,7 +49,7 @@ function delete_id(id)
     <tr>
     <th colspan="5"><a href="add_data.php">add data here.</a></th>
     </tr>
-    <th>id</th>  
+     
     <th>code</th>
     <th>number</th>
     <th>name</th>
@@ -61,38 +61,34 @@ function delete_id(id)
     <th colspan="2">Operations</th>
     </tr>
     <?php
-	$sql_query="SELECT * FROM floor";
-	$result_set=mysqli_query($link,$sql_query);
-	if(mysqli_num_rows($result_set)>0)
-	{
-        while($row=mysqli_fetch_row($result_set))
-		{
-		?>
-            <tr>
-            <td><?php echo $row[0]; ?></td>
-            <td><?php echo $row[1]; ?></td>
-            <td><?php echo $row[2]; ?></td>
-            <td><?php echo $row[3]; ?></td>
-            <td><?php echo $row[4]; ?></td>
-            <td><?php echo $row[5]; ?></td>
-            <td><?php echo $row[6]; ?></td>
-
-
-            <td align="center"><a href="javascript:edt_id('<?php echo $row[0]; ?>')"><img src="b_edit.png" align="EDIT" /></a></td>
-            <td align="center"><a href="javascript:delete_id('<?php echo $row[0]; ?>')"><img src="b_drop.png" align="DELETE" /></a></td>
-            </tr>
-        <?php
-		}
-	}
-	else
-	{
-		?>
+	$floor = new Floor($db);
+    $data     = $floor->select('*');
+    if (empty($data)) {
+    ?>
         <tr>
         <td colspan="5">No Data Found !</td>
         </tr>
+    <?php
+    } else {
+    foreach ($data as $row) {
+        ?>
+            <tr>
+            <td><?php echo $row['code']; ?></td>
+            <td><?php echo $row['number']; ?></td>
+            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['plan_path']; ?></td>
+            <td><?php echo $row['matrix']; ?></td>
+            <td><?php echo $row['location_id']; ?></td>
+
+
+
+            <td align="center"><a href="javascript:edt_id('<?php echo $row['id']; ?>')"><img src="../assets/imgs/b_edit.png" align="EDIT" /></a></td>
+            <td align="center"><a href="javascript:delete_id('<?php echo $row['id']; ?>')"><img src="../assets/imgs/b_drop.png" align="DELETE" /></a></td>
+            </tr>
         <?php
-	}
-	?>
+        }
+    }
+    ?>
     </table>
     </div>
 </div>

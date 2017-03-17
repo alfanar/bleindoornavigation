@@ -13,10 +13,11 @@ if(isset($_POST['btn-save']))
     
     // variables for input data
     
-    $fields    = array ('$name','$address','$description','$coordinates','$image_path');
+    $fields    = 'name, address,description,coordinates,image_path';
+    $values  = "'$name', '$address','$description','$coordinates','$image_path'";
     $location  = new Location($db);
-    $result    = $location->insert($name,$address, $description,$coordinates,$image_path);
-    
+    $result    = $location->insert($fields, $values);
+
     // sql query for inserting data into database
    
     // sql query for inserting data into database

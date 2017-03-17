@@ -1,22 +1,22 @@
 <?php
 include("../configs/configuration.php");
 // variables for input data
-	$code = $_POST['code'];
-	$name = $_POST['name'];
-        $description = $_POST['description'];
-	$floor_id = $_POST['floor_id'];
+	$code        = $_POST['code'];
+	$name        = $_POST['name'];
+    $description = $_POST['description'];
+	$floor_id    = $_POST['floor_id'];
 	// variables for input data
 if(isset($_POST['code'])&&isset($_POST['name'])&&isset($_POST['description'])&&isset($_POST['floor_id'])){
 if(isset($_POST['btn-save']))
-{
+    {
 	
-	
-	// sql query for inserting data into database
-	$sql_query = "INSERT INTO shop(code,name,description,floor_id) VALUES('$code','$name','$description','$floor_id')";
-	// sql query for inserting data into database
+	$fields    = 'code, name,description,floor_id';
+    $values    = "'$code', '$name','$description','$floor_id'";
+    $shop      = new Shop($db);
+    $result    = $shop->insert($fields, $values);
+
 	}
-	// sql query execution function
-	$result=mysqli_query($link,$sql_query) or die(mysqli_error($link));
+	
 	if($result)
 	{
 		?>
@@ -42,7 +42,7 @@ if(isset($_POST['btn-save']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE Indoor Navigation</title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 </head>
 <body>
 <center>
@@ -65,7 +65,7 @@ if(isset($_POST['btn-save']))
     <tr>
     <td><input type="text" name="name" placeholder="NAME" required /></td>
     </tr>
-<tr>
+    <tr>
     <td><input type="text" name="description" placeholder="DESCRIPTION" required /></td>
 
     </tr>

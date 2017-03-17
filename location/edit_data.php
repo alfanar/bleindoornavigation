@@ -1,28 +1,36 @@
 <?php
 include("../configs/configuration.php");
-if(isset($_GET['edit_id']))
-{
-    $sql_query="SELECT * FROM location WHERE id=".$_GET['edit_id'];
-    $result_set=mysqli_query($link,$sql_query);
-    $fetched_row=mysqli_fetch_array($link,$result_set);
-}
+//if(isset($_GET['edit_id']))
+//{
+    //$sql_query   = "SELECT * FROM location WHERE id=".$_GET['edit_id'];
+   // $location    = new Location($db);
+    //$fetched_row = $location->db_fetch();
+    //$result_set  = mysqli_query($link,$sql_query);
+    //$fetched_row = mysqli_fetch_array($link,$result_set);
+//}
 if(isset($_POST['btn-update']))
 {
     // variables for input data
-    $name = $_POST['name'];
-    $address= $_POST['address'];
-    $description= $_POST['description'];
-    $coordinates= $_POST['coordinates'];
-    $image_path= $_POST['image_path'];
+    $name        = $_POST['name'];
+    $address     = $_POST['address'];
+    $description = $_POST['description'];
+    $coordinates = $_POST['coordinates'];
+    $image_path  = $_POST['image_path'];
     
     // variables for input data
     
     // sql query for update data into database
-    $sql_query = "UPDATE location SET name='$name',address='$address',description='$description',coordinates='$coordinates',image_path='$image_path' WHERE id=".$_GET['edit_id'];
+   
+    $fields    = "name='$name', address='$address',coordinates='$description',description='$coordinates',image_path='$image_path'";
+    $location  = new Location($db);
+    $result    = $location->update($fields, $_GET['edit_id']);
+
+
+   
     // sql query for update data into database
     
     // sql query execution function
-    if(mysqli_query($link,$sql_query))
+    if($result)
     {
         ?>
         <script type="text/javascript">
@@ -67,19 +75,19 @@ if(isset($_POST['btn-cancel']))
     <form method="post">
     <table align="center">
     <tr>
-    <td><input type="text" name="name" placeholder="name" value="<?php echo $fetched_row['name']; ?>" required /></td>
+    <td><input type="text" name="name" placeholder="name"  required /></td>
     </tr>
     <tr>
-    <td><input type="text" name="address" placeholder="address" value="<?php echo $fetched_row['address']; ?>" required /></td>
+    <td><input type="text" name="address" placeholder="address"   required /></td>
     </tr>
     <tr>
-    <td><input type="text" name="description" placeholder="description" value="<?php echo $fetched_row['description']; ?>" required /></td>
+    <td><input type="text" name="description" placeholder="description"  required /></td>
     </tr>
     <tr>
-    <td><input type="text" name="coordinates" placeholder="coordinates" value="<?php echo $fetched_row['coordinates']; ?>" required /></td>
+    <td><input type="text" name="coordinates" placeholder="coordinates"   required /></td>
     </tr>
     <tr>
-    <td><input type="text" name="image_path" placeholder="image_path" value="<?php echo $fetched_row['image_path']; ?>" required /></td>
+    <td><input type="text" name="image_path" placeholder="image_path"  required /></td>
     </tr>
    
     <tr>

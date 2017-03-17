@@ -25,26 +25,25 @@ abstract class Entity
 		return $data;
 	}
 
-	public function insert($fields)
+	public function insert($fields, $values)
    {
    
-       $sql = 'INSERT'. $fields .' INTO ' . $this->_table;
-
-       $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
-      return $result;
+        $sql = 'INSERT INTO '. $this->_table .' ('. $fields .') VALUES ('. $values .')';
+        $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
+        return $result;
    }                                                                                                
 	
-    public function update($fields)
-	{
-
-       $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
-      return $result;
+    public function update($data, $id)
+	{ 
+	   $sql = 'UPDATE '. $this->_table .' SET '. $data .' WHERE id='. $id;
+       $result = $this->_db->db_query($sql) or die ($this->_db->db_error());
+       return $result;
 
 	}
 
 	public function delete($id)
 	{
-      $sql='DELETE'. $id .' FROM '. $this->_table ;
+      $sql='DELETE FROM '. $this->_table .' WHERE id='.$id;
       $result=$this->_db->db_query($sql) or die ($this->_db->db_error());
       return $result;
 

@@ -1,28 +1,41 @@
 <?php
 include("../configs/configuration.php");
+    $floor  = new Floor($db);
+
 if(isset($_GET['edit_id']))
-{
-    $sql_query="SELECT * FROM floor WHERE id=".$_GET['edit_id'];
-    $result_set=mysqli_query($link,$sql_query);
-    $fetched_row=mysqli_fetch_array($link,$result_set);
+{   $code        = $_POST['code'];
+    $number      = $_POST['number'];
+    $name        = $_POST['name'];
+    $plan_path   = $_POST['plan_path'];
+    $matrix      = $_POST['matrix'];
+    $location_id = $_POST['location_id'];
+   
+    $data = "code='$code', number='$number', name='$name',plan_path='$plan_path',matrix='$matrix',location_id='$location_id'" ; 
+    //$sql_query="SELECT * FROM location WHERE id=".$_GET['edit_id'];
+    $result      = $floor->update($data, $_GET['edit_id']); 
 }
 if(isset($_POST['btn-update']))
 {
     // variables for input data
-    $code = $_POST['code'];
-    $number = $_POST['number'];
-    $name = $_POST['name'];
-    $plan_path = $_POST['plan_path'];
-    $matrix = $_POST['matrix'];
+    $code        = $_POST['code'];
+    $number      = $_POST['number'];
+    $name        = $_POST['name'];
+    $plan_path   = $_POST['plan_path'];
+    $matrix      = $_POST['matrix'];
     $location_id = $_POST['location_id'];
     // variables for input data
     
     // sql query for update data into database
-    $sql_query = "UPDATE floor SET code='$code',number='$number',name='$name',plan_path='$plan_path',matrix='$matrix',location_id='$location_id'  WHERE id=".$_GET['edit_id'];
-    // sql query for update data into database
+    
+   // $fields    = 'code, number,name,plan_path,matrix,location_id';
+   //$values    = "'$code', '$number','$name','$plan_path','$matrix','$location_id'";
+    $data = "code='$code', number='$number', name='$name',plan_path='$plan_path',matrix='$matrix',location_id='$location_id'" ; 
+
+    //$location  = new Location($db);
+    $result    = $floor->update($data, $_GET['edit_id']);
     
     // sql query execution function
-    if(mysqli_query($link,$sql_query))
+    if(result)
     {
         ?>
         <script type="text/javascript">
@@ -51,7 +64,7 @@ if(isset($_POST['btn-cancel']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE Indoornavigation </title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 </head>
 <body>
 <center>

@@ -4,9 +4,10 @@ include("../configs/configuration.php");
 // delete condition
 if(isset($_GET['delete_id']))
 {
-	$sql_query="DELETE FROM shop_coordinates_table WHERE id=".$_GET['delete_id'];
-	mysqli_query($link,$sql_query);
-	header("Location: $_SERVER[PHP_SELF]");
+
+      $shop_coordinates     = new Shop_coordinates($db);
+      $result   = $shop_coordinates->delete($_GET['delete_id']);
+	
 }
 // delete condition
 
@@ -16,7 +17,7 @@ if(isset($_GET['delete_id']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE Indoor Navigation</title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 <script type="text/javascript">
 function edt_id(id)
 {
@@ -51,35 +52,34 @@ function delete_id(id)
     </tr>
     <th>Point</th>
     <th>Shop ID</th>
+    
     <th colspan="2">Operations</th>
     </tr>
     <?php
-	$sql_query="SELECT * FROM shop_coordinates_table";
-        $result_set=mysqli_query($link,$sql_query);
-	if(mysqli_num_rows($result_set)>0)
-	{
-        while($row=mysqli_fetch_row($result_set))
-		{
-		?>
-            <tr>
-            
-            <td><?php echo $row[1]; ?></td>
-            <td><?php echo $row[2]; ?></td>
-            <td align="center"><a href="javascript:edt_id('<?php echo $row[0]; ?>')"><img src="b_edit.png" align="EDIT" /></a></td>
-            <td align="center"><a href="javascript:delete_id('<?php echo $row[0]; ?>')"><img src="b_drop.png" align="DELETE" /></a></td>
-            </tr>
-        <?php
-		}
-	}
-	else
-	{
-		?>
+    $shop_coordinates = new Shop_coordinates($db);
+    $data = $shop_coordinates->select('*');
+    if (empty($data)) {
+    ?>
         <tr>
         <td colspan="5">No Data Found !</td>
         </tr>
-        <?php
-	}
-	?>
+    <?php
+    } else {
+    foreach ($data as $row) {
+        ?>
+            <tr>
+            <td><?php echo $row['point']; ?></td>
+            <td><?php echo $row['shop_id']; ?></td>
+            
+
+
+            <td align="center"><a href="javascript:edt_id('<?php echo $row['id']; ?>')"><img src="../assets/imgs/b_edit.png" align="EDIT" /></a></td>
+            <td align="center"><a href="javascript:delete_id('<?php echo $row['id']; ?>')"><img src="../assets/imgs/b_drop.png" align="DELETE" /></a></td>
+            </tr>
+       <?php
+        }
+    }
+    ?>
     </table>
     </div>
 </div>

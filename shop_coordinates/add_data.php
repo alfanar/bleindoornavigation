@@ -1,20 +1,21 @@
 <?php
 include("../configs/configuration.php");
 // variables for input data
-	$point = $_POST['point'];
-	$shop_id = $_POST['shop_id'];
+	$point       = $_POST['point'];
+	$shop_id       = $_POST['shop_id'];
+   
 	// variables for input data
 if(isset($_POST['point'])&&isset($_POST['shop_id'])){
 if(isset($_POST['btn-save']))
-{
+    {
 	
-	
-	// sql query for inserting data into database
-	$sql_query = "INSERT INTO shop_coordinates_table(point,shop_id) VALUES('$point','$shop_id')";
-	// sql query for inserting data into database
+	$fields    = 'point,shop_id';
+    $values    = "'$point', '$shop_id'";
+    $Shop_coordinates      = new Shop_coordinates($db);
+    $result    = $Shop_coordinates->insert($fields, $values);
+
 	}
-	// sql query execution function
-	$result=mysqli_query($link,$sql_query) or die(mysqli_error($link));
+	
 	if($result)
 	{
 		?>
@@ -40,7 +41,7 @@ if(isset($_POST['btn-save']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BLE Indoor Navigation</title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../assets/styles/style.css" type="text/css" />
 </head>
 <body>
 <center>
@@ -63,6 +64,7 @@ if(isset($_POST['btn-save']))
     <tr>
     <td><input type="text" name="shop_id" placeholder="Shop ID" required /></td>
     </tr>
+    
     <tr>
     <td><button type="submit" name="btn-save"><strong>SAVE</strong></button></td>
     </tr>
